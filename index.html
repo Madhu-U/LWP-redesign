@@ -1,0 +1,799 @@
+<!doctype html>
+<html lang="en-IN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>
+      Laughing Water Productions | Event management, staging and film
+    </title>
+    <meta
+      name="description"
+      content="Event management, staging and film from Bengaluru. We design, stage and film live experiences across India, from concerts to intimate celebrations."
+    />
+    <meta name="theme-color" content="#07080c" />
+    <meta name="color-scheme" content="dark" />
+
+    <!-- Open Graph. TODO: add og:image and og:url once the image and final domain are known. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Laughing Water Productions" />
+    <meta
+      property="og:title"
+      content="Laughing Water Productions | Event management, staging and film"
+    />
+    <meta
+      property="og:description"
+      content="We design, stage and film live experiences across India, from concerts to the most intimate celebration."
+    />
+    <meta property="og:locale" content="en_IN" />
+
+    <link rel="icon" href="src/assets/favicon.svg" type="image/svg+xml" />
+
+    <!-- Fonts used above the fold -->
+    <link
+      rel="preload"
+      href="src/assets/fonts/bricolage-grotesque-latin-variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="src/assets/fonts/instrument-sans-latin-variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <link rel="stylesheet" href="src/css/tokens.css" />
+    <link rel="stylesheet" href="src/css/base.css" />
+    <link rel="stylesheet" href="src/css/components.css" />
+    <link rel="stylesheet" href="src/css/sections.css" />
+
+    <script src="src/js/main.js" defer></script>
+    <script src="src/js/contact-form.js" defer></script>
+    <script type="module" src="src/js/animation.js"></script>
+
+    <!-- Structured data for search engines. Only facts that appear on this page. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Laughing Water Productions",
+        "url": "https://lwp.live/",
+        "description": "Event management, staging and film. Bengaluru and across India.",
+        "founder": { "@type": "Person", "name": "Sunil Kumar Ramachandra" },
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Pavanaja Arcade, 22, 4th Block, Kumara Park West, Seshadripuram",
+          "addressLocality": "Bengaluru",
+          "addressRegion": "Karnataka",
+          "postalCode": "560020",
+          "addressCountry": "IN"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday"
+            ],
+            "opens": "10:30",
+            "closes": "19:30"
+          }
+        ],
+        "sameAs": [
+          "https://www.instagram.com/laughingwaterproductions.in",
+          "https://www.youtube.com/@laughingwaterproduction-1",
+          "https://www.facebook.com/lwp.live",
+          "https://x.com/WaterLaugh74936"
+        ]
+      }
+    </script>
+  </head>
+
+  <body>
+    <!-- <a class="skip-link" href="#main">Skip to main content</a> -->
+
+    <!-- =====================================================================
+       HERO + NAVIGATION
+       ===================================================================== -->
+    <header class="hero" id="top">
+      <!-- <div class="hero__backdrop" aria-hidden="true">
+      <span class="beam beam--1"></span>
+      <span class="beam beam--2"></span>
+      <span class="beam beam--3"></span>
+      <span class="beam beam--4"></span>
+      <span class="hero__glow"></span>
+      <span class="ring ring--hero"></span>
+      <span class="ring ring--hero ring--delay-1"></span>
+      <span class="ring ring--hero ring--delay-2"></span>
+      <span class="hero__crowd"></span>
+    </div> -->
+
+      <nav class="site-nav container" aria-label="Primary">
+        <a class="site-nav__logo" href="#top">
+          <!-- <span class="site-nav__dot" aria-hidden="true"></span> -->
+          <!-- <span class="site-nav__name">Laughing Water Productions</span> -->
+          <img src="./src/assets/LWP-Logo.webp" alt="" class="site-nav__logo" />
+          <!-- <span class="site-nav__descriptor">Productions</span> -->
+        </a>
+
+        <button class="site-nav__bars">
+          <img
+            src="./src/assets/bars-staggered-solid-full.svg"
+            alt="Navigation Menu"
+            id="bars-icon"
+            class="site-nav__bars-icon"
+          />
+          <img
+            src="./src/assets/xmark-solid-full.svg"
+            alt=""
+            id="cross-icon"
+            class="site-nav__bars-icon"
+            hidden
+          />
+        </button>
+
+        <ul id="nav-menu" class="site-nav__menu" role="list" hidden>
+          <li><a href="#brands">Brands</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#reach">Reach</a></li>
+          <li><a href="#people">People</a></li>
+          <li>
+            <a class="btn btn--primary btn--sm" href="#contact">Contact us</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="hero__content container">
+        <p class="eyebrow eyebrow--teal">
+          Event management, staging, film. Bengaluru and across India.
+        </p>
+        <h1 class="hero__title">Built for the night everyone remembers.</h1>
+        <p class="hero__lede">
+          Laughing Water Productions designs, stages and films live experiences,
+          from concerts to the most intimate celebration.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#contact">Start your event</a>
+          <a class="btn btn--outline" href="#work">See what we have staged</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- =====================================================================
+         SCALE STRIP
+         ===================================================================== -->
+      <section
+        class="scale-strip"
+        aria-label="Laughing Water Productions in numbers"
+      >
+        <ul class="scale-strip__list container" role="list">
+          <!-- <li class="scale-strip__item stat">
+          <span class="stat__value">40,000</span>
+          <span class="stat__label">in one night, A R Rahman live at KTPO</span>
+        </li> -->
+          <li class="scale-strip__item stat">
+            <span class="stat__value">26+</span>
+            <span class="stat__label">cities delivered across India</span>
+          </li>
+          <li class="scale-strip__item stat">
+            <span class="stat__value">200+</span>
+            <span class="stat__label">event professionals on the team</span>
+          </li>
+          <li class="scale-strip__item stat">
+            <span class="stat__value">60+</span>
+            <span class="stat__label">years of collective expertise</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- =====================================================================
+         SERVICES
+         ===================================================================== -->
+      <section
+        class="services container"
+        id="services"
+        aria-labelledby="services-title"
+      >
+        <div class="services__header">
+          <div class="services__heading">
+            <p class="eyebrow">What we do</p>
+            <h2 class="section-title" id="services-title">
+              One team from first idea to final encore.
+            </h2>
+          </div>
+          <p class="services__intro">
+            We merge creativity with technology, so a vision leaves the
+            whiteboard and arrives on stage intact.
+          </p>
+        </div>
+
+        <!-- Numbers (01-04) are generated by CSS counters -->
+        <ol class="services__list" role="list">
+          <li class="service">
+            <h3 class="service__name">Event Management</h3>
+            <p class="service__desc">
+              End-to-end planning and execution, on time and on budget.
+            </p>
+          </li>
+          <li class="service">
+            <h3 class="service__name">Logistics and Hospitality</h3>
+            <p class="service__desc">
+              Complete logistical and hospitality support, so guests and talent
+              are looked after.
+            </p>
+          </li>
+          <li class="service">
+            <h3 class="service__name">Video Production</h3>
+            <p class="service__desc">
+              Professional content creation, from event films to live broadcast.
+            </p>
+          </li>
+          <li class="service">
+            <h3 class="service__name">Branding</h3>
+            <p class="service__desc">
+              Strategic branding and visual identity for the event and beyond.
+            </p>
+          </li>
+        </ol>
+      </section>
+
+      <!-- =====================================================================
+         FLOATING STAGE
+         ===================================================================== -->
+      <!-- <section class="floating-stage" aria-labelledby="stage-title">
+      <div class="floating-stage__backdrop" aria-hidden="true">
+        <span class="ring ring--stage"></span>
+        <span class="ring ring--stage ring--delay-1"></span>
+        <span class="ring ring--stage ring--delay-2"></span>
+        <span class="floating-stage__light"></span>
+      </div>
+      <div class="floating-stage__inner container">
+        <div class="floating-stage__heading">
+          <p class="eyebrow">Signature staging</p>
+          <h2 class="floating-stage__title" id="stage-title">The Floating Stage.</h2>
+        </div> -->
+      <!-- TODO: replace placeholder copy -->
+      <!-- <p class="floating-stage__copy" data-placeholder>[Add one or two lines: what the floating stage is, where it has been used, and what it makes possible for a client.]</p> -->
+      <!-- </div> -->
+      <!-- </section> -->
+
+      <!-- =====================================================================
+         BRANDS
+         Each brand is themed by its modifier class (see sections.css).
+         The last .brand must stay the last child of this section.
+         ===================================================================== -->
+      <section id="brands" aria-labelledby="brands-title">
+        <div class="brands__intro container">
+          <p class="eyebrow">The house of brands</p>
+          <h2 class="section-title brands__title" id="brands-title">
+            Three brands. One standard of delivery.
+          </h2>
+        </div>
+
+        <article
+          class="brand brand--kalanation"
+          id="kalanation"
+          aria-labelledby="kalanation-name"
+        >
+          <div class="brand__inner container">
+            <div class="brand__identity">
+              <p class="eyebrow">Brand 01 / Arts and culture</p>
+              <p class="brand__monogram" aria-hidden="true">K</p>
+              <h3 class="brand__name" id="kalanation-name">Kalanation</h3>
+              <p class="brand__tagline">
+                A national stage for arts, culture and creative expression.
+              </p>
+            </div>
+            <div class="brand__details">
+              <p class="brand__about">
+                From classical dance and music to contemporary art installations
+                and cultural festivals, Kalanation brings communities together
+                through creative expression.
+              </p>
+              <ul class="brand__stats" role="list">
+                <li class="stat">
+                  <span class="stat__value">50+</span
+                  ><span class="stat__label">Cultural events</span>
+                </li>
+                <li class="stat">
+                  <span class="stat__value">10+</span
+                  ><span class="stat__label">Cities reached</span>
+                </li>
+                <li class="stat">
+                  <span class="stat__value">500+</span
+                  ><span class="stat__label">Artists featured</span>
+                </li>
+                <li class="stat">
+                  <span class="stat__value">100K+</span
+                  ><span class="stat__label">Audience reached</span>
+                </li>
+              </ul>
+              <ul class="offerings" role="list">
+                <li class="offerings__item">
+                  <span class="offerings__name">Cultural Festivals</span
+                  ><span class="offerings__desc"
+                    >Multi-day festivals across art forms</span
+                  >
+                </li>
+                <li class="offerings__item">
+                  <span class="offerings__name">Artist Showcases</span
+                  ><span class="offerings__desc"
+                    >Curated platforms for emerging and established
+                    artists</span
+                  >
+                </li>
+                <li class="offerings__item">
+                  <span class="offerings__name">Community Events</span
+                  ><span class="offerings__desc"
+                    >Grassroots gatherings that connect neighbourhoods</span
+                  >
+                </li>
+              </ul>
+              <a
+                class="btn btn--brand"
+                href="https://lwp.live/brands/kalanation/"
+                >Explore Kalanation <span aria-hidden="true">→</span></a
+              >
+            </div>
+          </div>
+        </article>
+
+        <article
+          class="brand brand--mineha"
+          id="mineha"
+          aria-labelledby="mineha-name"
+        >
+          <div class="brand__inner container">
+            <div class="brand__identity">
+              <p class="eyebrow">Brand 02 / Weddings and luxury</p>
+              <p class="brand__monogram" aria-hidden="true">M</p>
+              <h3 class="brand__name" id="mineha-name">Mineha</h3>
+              <p class="brand__tagline">
+                Elegant experiences for weddings, celebrations and luxury
+                occasions.
+              </p>
+            </div>
+            <div class="brand__details">
+              <p class="brand__about">
+                The luxury events arm of Laughing Water Productions. Every
+                detail is crafted with intent, with world-class vendors,
+                stunning decor and flawless execution.
+              </p>
+              <ul class="brand__stats" role="list">
+                <li class="stat">
+                  <span class="stat__value">200+</span
+                  ><span class="stat__label">Events produced</span>
+                </li>
+                <li class="stat">
+                  <span class="stat__value">15+</span
+                  ><span class="stat__label">Years of experience</span>
+                </li>
+                <li class="stat">
+                  <span class="stat__value">50+</span
+                  ><span class="stat__label">Vendor partners</span>
+                </li>
+              </ul>
+              <ul class="offerings" role="list">
+                <li class="offerings__item">
+                  <span class="offerings__name">Luxury Weddings</span
+                  ><span class="offerings__desc"
+                    >End-to-end management, styling and decor</span
+                  >
+                </li>
+                <li class="offerings__item">
+                  <span class="offerings__name">Private Celebrations</span
+                  ><span class="offerings__desc"
+                    >Milestones and family gatherings, with a personal
+                    touch</span
+                  >
+                </li>
+                <li class="offerings__item">
+                  <span class="offerings__name">Corporate Gala Events</span
+                  ><span class="offerings__desc"
+                    >Dinners and award ceremonies that last in memory</span
+                  >
+                </li>
+              </ul>
+              <a class="btn btn--brand" href="https://lwp.live/brands/mineha/"
+                >Explore Mineha <span aria-hidden="true">→</span></a
+              >
+            </div>
+          </div>
+        </article>
+
+        <article
+          class="brand brand--iksha"
+          id="iksha"
+          aria-labelledby="iksha-name"
+        >
+          <div class="brand__inner container">
+            <div class="brand__identity">
+              <p class="eyebrow">Brand 03 / Production and technology</p>
+              <p class="brand__monogram" aria-hidden="true">I</p>
+              <h3 class="brand__name" id="iksha-name">Iksha</h3>
+              <p class="brand__tagline">
+                Visionary productions where technology meets storytelling.
+              </p>
+            </div>
+            <div class="brand__details">
+              <p class="brand__about">
+                The production and technology wing of Laughing Water
+                Productions. Large-format video, live streaming, projection
+                mapping and interactive installations that make events
+                multi-sensory.
+              </p>
+              <ul class="brand__stats" role="list">
+                <li class="stat">
+                  <span class="stat__value">4K+</span
+                  ><span class="stat__label">Productions shot</span>
+                </li>
+                <li class="stat">
+                  <span class="stat__value">30+</span
+                  ><span class="stat__label">Live streams delivered</span>
+                </li>
+                <li class="stat">
+                  <span class="stat__value">20+</span
+                  ><span class="stat__label">Tech installations</span>
+                </li>
+                <li class="stat">
+                  <span class="stat__value">1M+</span
+                  ><span class="stat__label">Digital viewers</span>
+                </li>
+              </ul>
+              <ul class="offerings" role="list">
+                <li class="offerings__item">
+                  <span class="offerings__name">Video Production</span
+                  ><span class="offerings__desc"
+                    >Filming, editing and post for events, brand films and
+                    documentaries</span
+                  >
+                </li>
+                <li class="offerings__item">
+                  <span class="offerings__name">Live Streaming</span
+                  ><span class="offerings__desc"
+                    >Multi-camera broadcasts to global audiences</span
+                  >
+                </li>
+                <li class="offerings__item">
+                  <span class="offerings__name">Immersive Tech</span
+                  ><span class="offerings__desc"
+                    >Projection mapping, LED and interactive installs</span
+                  >
+                </li>
+              </ul>
+              <a class="btn btn--brand" href="https://lwp.live/brands/iksha/"
+                >Explore Iksha <span aria-hidden="true">→</span></a
+              >
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- =====================================================================
+         WORK
+         ===================================================================== -->
+      <section class="work container" id="work" aria-labelledby="work-title">
+        <p class="eyebrow">On stage</p>
+        <h2 class="section-title work__title" id="work-title">
+          Recent work, in the room and on the road.
+        </h2>
+
+        <div class="work__layout">
+          <article class="card feature-card">
+            <!-- TODO: replace with <img> (add alt text, width and height) -->
+            <div
+              class="placeholder feature-card__media"
+              aria-hidden="true"
+              data-placeholder
+            >
+              [Event poster or photo]
+            </div>
+            <div class="feature-card__body">
+              <p class="eyebrow">Musical play, Hindi</p>
+              <h3 class="feature-card__title">
+                Rajadhiraaj Yatra: Krishna Leela Aapke Dwar
+              </h3>
+              <p class="feature-card__summary">
+                The world's first mega musical on Shri Krishna. Music, dance,
+                drama and devotion on one stage.
+              </p>
+              <dl class="venue-list">
+                <div class="venue-list__row">
+                  <dt>Bengaluru</dt>
+                  <dd>Prestige Centre for Performing Arts, March 2026</dd>
+                </div>
+                <div class="venue-list__row">
+                  <dt>Chennai</dt>
+                  <dd>March 2026</dd>
+                </div>
+              </dl>
+              <p>
+                <a
+                  class="arrow-link"
+                  href="https://pixeva.in/gallery/rajadhiraj-yatra-9hei2"
+                  >View photos<span class="visually-hidden">
+                    of Rajadhiraaj Yatra</span
+                  >
+                  <span aria-hidden="true">→</span></a
+                >
+              </p>
+            </div>
+          </article>
+
+          <div class="projects">
+            <h3 class="eyebrow">Selected projects</h3>
+            <ul class="projects__list" role="list">
+              <li>
+                <a class="project-link" href="https://lwp.live/works/npci/">
+                  <span class="project-link__name">NPCI</span>
+                  <span class="project-link__cta"
+                    >View project <span aria-hidden="true">→</span></span
+                  >
+                </a>
+              </li>
+              <li>
+                <a class="project-link" href="https://lwp.live/works/bial/">
+                  <span class="project-link__name">BIAL</span>
+                  <span class="project-link__cta"
+                    >View project <span aria-hidden="true">→</span></span
+                  >
+                </a>
+              </li>
+            </ul>
+            <!-- TODO: replace placeholder copy -->
+            <p class="projects__note" data-placeholder>
+              [Add a one-line result for each project, such as scale, city or
+              outcome.]
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+         REACH
+         ===================================================================== -->
+      <section class="reach" id="reach" aria-labelledby="reach-title">
+        <h2 class="visually-hidden" id="reach-title">Where we work</h2>
+        <div class="reach__inner container">
+          <div class="reach__column">
+            <p class="eyebrow">Strong pan-India</p>
+            <p class="reach__figure reach__figure--number">26+</p>
+            <p class="reach__text">
+              cities, from the South to the North and from the East to the West,
+              delivered seamlessly.
+            </p>
+          </div>
+          <div class="reach__column">
+            <p class="eyebrow">Strong pan-Karnataka</p>
+            <p class="reach__figure reach__figure--words">Every district.</p>
+            <p class="reach__text">
+              We have executed projects in every single district of Karnataka,
+              which makes us a trusted local partner statewide.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+         PEOPLE
+         ===================================================================== -->
+      <section
+        class="people container"
+        id="people"
+        aria-labelledby="people-title"
+      >
+        <div class="people__layout">
+          <!-- TODO: replace with <img> (add alt text, width and height) -->
+          <div
+            class="placeholder people__portrait"
+            aria-hidden="true"
+            data-placeholder
+          >
+            <img src="./src/assets/sunil-ramachandra.webp" alt="" height=""/>
+          </div>
+          <div class="people__body">
+            <p class="eyebrow">Founder and visionary</p>
+            <h2 class="people__title" id="people-title">
+              Sunil Kumar Ramachandra started at 18
+            </h2>
+            <p class="people__bio">
+              Today he is a stalwart of the events industry, an imaginative
+              creator and a mentor to countless aspiring event professionals.
+              That journey set the standard the whole team works to.
+            </p>
+            <dl class="principles">
+              <div class="card principle">
+                <dt class="eyebrow eyebrow--sm eyebrow--accent">Mission</dt>
+                <dd class="principle__text">
+                  To innovate, visualize, and translate ideas into seamless
+                  execution through expertise and discipline.
+                </dd>
+              </div>
+              <div class="card principle">
+                <dt class="eyebrow eyebrow--sm eyebrow--teal">Vision</dt>
+                <dd class="principle__text">
+                  To set the global standard in trusted event experiences.
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+         CLIENTS
+         ===================================================================== -->
+      <section class="clients" aria-labelledby="clients-title">
+        <div class="clients__inner container">
+          <h2 class="eyebrow" id="clients-title">Trusted by</h2>
+          <!-- TODO: replace each <li> with a logo <img> (with alt text) and remove aria-hidden from the list -->
+          <ul class="client-logos" role="list" aria-hidden="true">
+            <li class="client-logos__item" data-placeholder>[Client logo]</li>
+            <li class="client-logos__item" data-placeholder>[Client logo]</li>
+            <li class="client-logos__item" data-placeholder>[Client logo]</li>
+            <li class="client-logos__item" data-placeholder>[Client logo]</li>
+            <li class="client-logos__item" data-placeholder>[Client logo]</li>
+            <li class="client-logos__item" data-placeholder>[Client logo]</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+         CONTACT
+         ===================================================================== -->
+      <section class="contact" id="contact" aria-labelledby="contact-title">
+        <div class="contact__glow" aria-hidden="true"></div>
+        <div class="contact__inner container">
+          <div class="contact__info">
+            <p class="eyebrow">Let us make your dream event a reality</p>
+            <h2 class="contact__title" id="contact-title">
+              Tell us about your event.
+            </h2>
+            <dl class="contact__facts">
+              <div>
+                <dt class="eyebrow eyebrow--sm">Visit us</dt>
+                <dd>
+                  <address>
+                    Pavanaja Arcade, 22, 4th Block, Kumara Park West,
+                    Seshadripuram, Bengaluru, Karnataka 560020
+                  </address>
+                </dd>
+              </div>
+              <div>
+                <dt class="eyebrow eyebrow--sm">Working hours</dt>
+                <dd>
+                  Monday to Saturday, 10:30 AM to 7:30 PM. Closed on Sunday.
+                </dd>
+              </div>
+            </dl>
+          </div>
+
+          <!--
+          TODO: set `action` to your form backend (Formspree, Netlify Forms,
+          your own API). Without a real URL the form shows an error on submit.
+          See README.md, "Connect the contact form".
+        -->
+          <form
+            class="card inquiry-form"
+            id="inquiry-form"
+            action="#"
+            method="post"
+            novalidate
+          >
+            <div class="field">
+              <label class="field__label" for="inquiry-name">Your name</label>
+              <input
+                class="field__control"
+                id="inquiry-name"
+                name="name"
+                type="text"
+                autocomplete="name"
+                required
+                aria-describedby="inquiry-name-error"
+              />
+              <p class="field__error" id="inquiry-name-error" hidden></p>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="inquiry-contact"
+                >Email or phone</label
+              >
+              <input
+                class="field__control"
+                id="inquiry-contact"
+                name="contact"
+                type="text"
+                required
+                aria-describedby="inquiry-contact-error"
+              />
+              <p class="field__error" id="inquiry-contact-error" hidden></p>
+            </div>
+
+            <div class="inquiry-form__row">
+              <div class="field">
+                <label class="field__label" for="inquiry-type"
+                  >Type of event</label
+                >
+                <select
+                  class="field__control"
+                  id="inquiry-type"
+                  name="event_type"
+                >
+                  <option>Concert or live show</option>
+                  <option>Corporate event</option>
+                  <option>Cultural festival</option>
+                  <option>Wedding or celebration</option>
+                  <option>Video or live stream</option>
+                  <option>Something else</option>
+                </select>
+              </div>
+              <div class="field">
+                <label class="field__label" for="inquiry-date"
+                  >Rough date <span class="field__hint">(optional)</span></label
+                >
+                <input
+                  class="field__control"
+                  id="inquiry-date"
+                  name="rough_date"
+                  type="text"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="inquiry-message"
+                >What are you imagining?
+                <span class="field__hint">(optional)</span></label
+              >
+              <textarea
+                class="field__control"
+                id="inquiry-message"
+                name="message"
+                rows="4"
+              ></textarea>
+            </div>
+
+            <button class="btn btn--primary btn--block" type="submit">
+              Send inquiry
+            </button>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner container">
+        <p>
+          © Laughing Water Productions <span data-current-year>2026</span>. All
+          rights reserved.
+        </p>
+        <nav aria-label="Social media">
+          <ul class="site-footer__social" role="list">
+            <li>
+              <a href="https://www.instagram.com/laughingwaterproductions.in"
+                >Instagram</a
+              >
+            </li>
+            <li>
+              <a href="https://www.youtube.com/@laughingwaterproduction-1"
+                >YouTube</a
+              >
+            </li>
+            <li><a href="https://www.facebook.com/lwp.live">Facebook</a></li>
+            <li><a href="https://x.com/WaterLaugh74936">X</a></li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>

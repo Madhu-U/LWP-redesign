@@ -1,0 +1,100 @@
+/* ==========================================================================
+   tokens.css
+   Single source of truth for fonts, colors, type scale, spacing and radii.
+   Change a value here and it updates everywhere.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Fonts (self-hosted, Latin subset)
+   -------------------------------------------------------------------------- */
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("../assets/fonts/bricolage-grotesque-latin-variable.woff2") format("woff2");
+  font-weight: 500 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Instrument Sans";
+  src: url("../assets/fonts/instrument-sans-latin-variable.woff2") format("woff2");
+  font-weight: 400 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DM Mono";
+  src: url("../assets/fonts/dm-mono-latin-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: dark;
+
+  /* ------------------------------------------------------------------------
+     Color: surfaces
+     ------------------------------------------------------------------------ */
+  --color-bg: #07080c;           /* page background */
+  --color-surface: #0a0c11;      /* full-width bands (stats, reach, contact) */
+  --color-card: #0e1117;         /* cards and panels */
+  --color-hero-glow: #10141c;    /* top of the hero gradient */
+  --color-stage-bg: #08121a;     /* Floating Stage band */
+  --color-crowd-back: #0c0e14;   /* crowd silhouette, back row */
+  --color-crowd-front: #040508;  /* crowd silhouette, front row */
+
+  /* Color: text */
+  --color-text: #edeae3;
+  --color-text-soft: #c9c7c0;    /* body copy on dark */
+  --color-text-muted: #9c9a94;   /* labels, captions */
+
+  /* Color: accents */
+  --color-accent: #f2b544;       /* primary accent (amber). Swap to re-theme. */
+  --color-teal: #4cc9b8;         /* secondary accent */
+  --color-error: #ff8a7a;
+  --color-success: var(--color-teal);
+
+  /* Lines and borders (all derived from the text color) */
+  --line-faint: rgb(237 234 227 / 0.1);   /* band edges */
+  --line-card: rgb(237 234 227 / 0.12);   /* card outlines */
+  --line: rgb(237 234 227 / 0.14);        /* list dividers */
+  --line-input: rgb(237 234 227 / 0.25);  /* form controls, dashed placeholders */
+  --line-strong: rgb(237 234 227 / 0.35); /* outline buttons */
+
+  /* ------------------------------------------------------------------------
+     Typography
+     ------------------------------------------------------------------------ */
+  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-body: "Instrument Sans", system-ui, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+  /* Fluid type scale (rem so it respects the browser font-size setting) */
+  --text-hero: clamp(3.25rem, 10vw, 9.25rem);
+  --text-stage: clamp(2.5rem, 6.4vw, 6rem);
+  --text-contact: clamp(2.75rem, 7vw, 6.25rem);
+  --text-section: clamp(2.25rem, 5.4vw, 4.5rem);
+  --text-people: clamp(2.25rem, 5vw, 4rem);
+  --text-brand-name: clamp(2.5rem, 6vw, 4.75rem);
+  --text-reach-number: clamp(6rem, 14vw, 12.5rem);
+  --text-reach-words: clamp(3rem, 7vw, 6.5rem);
+  --text-monogram: clamp(10rem, 22vw, 18.75rem);
+  --text-project: clamp(2rem, 4vw, 3.25rem);
+  --text-service: clamp(1.75rem, 3.6vw, 3rem);
+  --text-feature: clamp(1.75rem, 3.2vw, 2.5rem);
+  --text-scale-stat: clamp(2.5rem, 5vw, 4rem);
+
+  /* ------------------------------------------------------------------------
+     Layout
+     ------------------------------------------------------------------------ */
+  --container: 80rem;            /* 1280px */
+  --gutter: 1.5rem;              /* 24px side padding */
+
+  --radius-sm: 0.625rem;         /* 10px: form controls */
+  --radius-md: 0.75rem;          /* 12px: small tiles */
+  --radius-lg: 0.875rem;         /* 14px: cards */
+  --radius-xl: 1.25rem;          /* 20px: large panels */
+  --radius-pill: 999px;
+}

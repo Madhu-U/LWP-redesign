@@ -1,0 +1,957 @@
+/* ==========================================================================
+   sections.css
+   Layout and styling for each section of the page, in page order:
+   1. Hero (+ navigation)      6. Work
+   2. Scale strip              7. Reach
+   3. Services                 8. People
+   4. Floating Stage           9. Clients
+   5. Brands                  10. Contact + Footer
+   Most sections use flex-wrap with a flex-basis, so columns stack on small
+   screens without media queries.
+   ========================================================================== */
+
+/* ==========================================================================
+   1. Hero and navigation
+   ========================================================================== */
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 51.25rem;
+  overflow: hidden;
+  background: radial-gradient(
+    120% 80% at 50% 0%,
+    var(--color-hero-glow) 0%,
+    var(--color-bg) 62%
+  );
+}
+
+/* Decorative layer: light beams, glow, ripples and the crowd silhouette */
+.hero__backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.beam {
+  position: absolute;
+  top: -30px;
+  background: linear-gradient(180deg, var(--beam-color), transparent 86%);
+  clip-path: polygon(47% 0, 53% 0, 100% 100%, 0 100%);
+  filter: blur(var(--beam-blur, 8px));
+  transform-origin: 50% 0;
+  animation: var(--beam-sway) ease-in-out infinite;
+}
+
+.beam--1 {
+  --beam-color: var(--color-accent);
+  --beam-sway: sway-a 9s;
+  left: 8%;
+  width: 420px;
+  height: 760px;
+  opacity: 0.42;
+}
+
+.beam--2 {
+  --beam-color: var(--color-teal);
+  --beam-sway: sway-b 11s;
+  --beam-blur: 10px;
+  left: 34%;
+  width: 460px;
+  height: 800px;
+  opacity: 0.3;
+}
+
+.beam--3 {
+  --beam-color: var(--color-accent);
+  --beam-sway: sway-a 9s;
+  left: 58%;
+  width: 420px;
+  height: 760px;
+  opacity: 0.36;
+}
+
+.beam--4 {
+  --beam-color: var(--color-teal);
+  --beam-sway: sway-b 11s;
+  --beam-blur: 10px;
+  left: 76%;
+  width: 380px;
+  height: 720px;
+  opacity: 0.26;
+}
+
+@keyframes sway-a {
+  0%,
+  100% {
+    transform: rotate(-9deg);
+  }
+
+  50% {
+    transform: rotate(7deg);
+  }
+}
+
+@keyframes sway-b {
+  0%,
+  100% {
+    transform: rotate(8deg);
+  }
+
+  50% {
+    transform: rotate(-8deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .beam {
+    animation: none;
+  }
+}
+
+.hero__glow {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 380px;
+  opacity: 0.28;
+  background: radial-gradient(
+    60% 100% at 50% 100%,
+    var(--color-accent),
+    transparent 70%
+  );
+}
+
+.ring--hero {
+  --ring-width: 1000px;
+  --ring-height: 230px;
+  bottom: 34px;
+  left: 50%;
+  margin-left: -500px;
+}
+
+/* Three rows of "heads" (listed top layer first) over a solid floor */
+.hero__crowd {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 4rem;
+  background:
+    linear-gradient(var(--color-crowd-front), var(--color-crowd-front)) 0 100% /
+      100% 14px no-repeat,
+    radial-gradient(
+        circle at 50% 100%,
+        var(--color-crowd-front) 16px,
+        transparent 17px
+      )
+      0 100% / 36px 60px repeat-x,
+    radial-gradient(
+        circle at 50% 100%,
+        var(--color-crowd-back) 11px,
+        transparent 12px
+      )
+      7px 100% / 22px 46px repeat-x;
+}
+
+.site-nav {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding-block: 1.5rem;
+}
+
+.site-nav__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.site-nav__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+.site-nav__logo {
+  width: 15rem;
+}
+
+.site-nav__name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.site-nav__descriptor {
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.site-nav__links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.75rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.site-nav__menu {
+  position: absolute;
+  top: 5rem;
+  right: 1rem;
+  width: 12rem;
+  padding: 20px 10px;
+  border: 3px solid #f2b646ff;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  z-index: 100;
+}
+
+.site-nav__menu[hidden] {
+  display: none;
+}
+
+.site-nav__bars {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+.site-nav__bars-icon {
+  width: 2rem;
+}
+
+.hero__content {
+  --eyebrow-gap: 0;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2rem;
+  padding-block: 2rem 9.375rem;
+}
+
+.hero__content .eyebrow {
+  letter-spacing: 0.18em;
+}
+
+.hero__title {
+  max-width: 11ch;
+  font-family: var(--font-display);
+  font-size: var(--text-hero);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+}
+
+.hero__lede {
+  max-width: 37.5rem;
+  color: var(--color-text-soft);
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+/* ==========================================================================
+   2. Scale strip: four headline numbers
+   ========================================================================== */
+.scale-strip {
+  --stat-size: var(--text-scale-stat);
+  --stat-tracking: -0.03em;
+  --stat-label-gap: 0.5rem;
+  --stat-label-size: 0.9375rem;
+  --stat-label-leading: 1.4;
+  border-block: 1px solid var(--line-faint);
+  background: var(--color-surface);
+}
+
+.scale-strip__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem 1.5rem;
+  justify-content: space-around;
+  padding-block: 2.75rem;
+}
+
+.scale-strip__item {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+
+/* ==========================================================================
+   3. Services ("What we do")
+   ========================================================================== */
+.services {
+  padding-block: 7rem 5rem;
+}
+
+.services__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem 4rem;
+  margin-bottom: 3.5rem;
+}
+
+.services__heading {
+  flex: 1 1 420px;
+  min-width: 0;
+}
+
+.services__intro {
+  flex: 1 1 320px;
+  min-width: 0;
+  max-width: 27.5rem;
+  color: var(--color-text-soft);
+  font-size: 1.125rem;
+  line-height: 1.55;
+}
+
+.services__list {
+  border-top: 1px solid var(--line);
+  counter-reset: service;
+}
+
+.service {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.75rem 2.5rem;
+  padding-block: 2rem;
+  border-bottom: 1px solid var(--line);
+  counter-increment: service;
+}
+
+/* The 01-04 numbers are generated, so the list can be reordered freely */
+.service::before {
+  flex: 0 0 3.5rem;
+  color: var(--color-accent);
+  content: counter(service, decimal-leading-zero);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+}
+
+.service__name {
+  flex: 1 1 280px;
+  min-width: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-service);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.service__desc {
+  flex: 1 1 280px;
+  min-width: 0;
+  color: var(--color-text-muted);
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   4. Floating Stage
+   ========================================================================== */
+.floating-stage {
+  position: relative;
+  overflow: hidden;
+  border-block: 1px solid color-mix(in srgb, var(--color-teal) 25%, transparent);
+  background: var(--color-stage-bg);
+}
+
+.floating-stage__backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.ring--stage {
+  --ring-width: 760px;
+  --ring-height: 190px;
+  --ring-color: color-mix(in srgb, var(--color-teal) 60%, transparent);
+  top: 50%;
+  left: 72%;
+  margin-top: -20px;
+  margin-left: -380px;
+}
+
+/* The glowing stage deck */
+.floating-stage__light {
+  position: absolute;
+  top: 50%;
+  left: 72%;
+  width: 300px;
+  height: 14px;
+  margin: -34px 0 0 -150px;
+  border-radius: 2px;
+  opacity: 0.9;
+  background: var(--color-accent);
+  box-shadow: 0 0 60px 8px var(--color-accent);
+}
+
+.floating-stage__inner {
+  --eyebrow-color: var(--color-teal);
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem 4rem;
+  padding-block: 6rem;
+}
+
+.floating-stage__heading {
+  flex: 1 1 440px;
+  min-width: 0;
+}
+
+.floating-stage__title {
+  font-family: var(--font-display);
+  font-size: var(--text-stage);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+}
+
+.floating-stage__copy {
+  flex: 1 1 320px;
+  min-width: 0;
+  max-width: 28.75rem;
+  color: var(--color-text-soft);
+  font-size: 1.125rem;
+  line-height: 1.55;
+}
+
+/* ==========================================================================
+   5. Brands: the house intro plus one block per brand.
+   Each brand sets its own palette through the custom properties on its
+   modifier class. Everything else is shared.
+   ========================================================================== */
+.brands__intro {
+  padding-block: 7rem 3.5rem;
+}
+
+.brands__title {
+  max-width: 16ch;
+}
+
+.brand {
+  --brand-line: color-mix(in srgb, var(--brand-accent) 30%, transparent);
+  --eyebrow-color: var(--brand-accent);
+  --eyebrow-gap: 0;
+  --stat-color: var(--brand-accent);
+  --stat-label-color: var(--brand-muted);
+  border-top: 1px solid var(--brand-line);
+  background: var(--brand-bg);
+}
+
+.brand:last-child {
+  border-bottom: 1px solid var(--brand-line);
+}
+
+/* Palettes */
+.brand--kalanation {
+  --brand-accent: #f0873a;
+  --brand-bg: #140b08;
+  --brand-lede: #e7d9cf;
+  --brand-body: #cdbbae;
+  --brand-muted: #a8978b;
+}
+
+.brand--mineha {
+  --brand-accent: #e9b7b0;
+  --brand-bg: #130b10;
+  --brand-lede: #ebdadd;
+  --brand-body: #cdb7bc;
+  --brand-muted: #a9959a;
+}
+
+.brand--iksha {
+  --brand-accent: #5fd4ec;
+  --brand-bg: #07101a;
+  --brand-lede: #d5e8ee;
+  --brand-body: #afc4cc;
+  --brand-muted: #8ca3ac;
+}
+
+.brand__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem 4rem;
+  padding-block: 5.5rem;
+}
+
+.brand__identity {
+  flex: 1 1 380px;
+  min-width: 0;
+}
+
+/* Oversized decorative initial */
+.brand__monogram {
+  margin-top: 0.75rem;
+  color: var(--brand-accent);
+  font-family: var(--font-display);
+  font-size: var(--text-monogram);
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  line-height: 0.82;
+}
+
+.brand__name {
+  margin-top: 1rem;
+  font-family: var(--font-display);
+  font-size: var(--text-brand-name);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.brand__tagline {
+  max-width: 26.25rem;
+  margin-top: 1rem;
+  color: var(--brand-lede);
+  font-size: 1.25rem;
+  line-height: 1.45;
+}
+
+.brand__details {
+  display: flex;
+  flex: 1 1 440px;
+  flex-direction: column;
+  gap: 2.25rem;
+  min-width: 0;
+}
+
+.brand__about {
+  color: var(--brand-body);
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+.brand__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 2.25rem;
+}
+
+.offerings {
+  border-top: 1px solid var(--brand-line);
+}
+
+.offerings__item {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.375rem 1.5rem;
+  padding-block: 1.125rem;
+  border-bottom: 1px solid var(--brand-line);
+}
+
+.offerings__name {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.offerings__desc {
+  color: var(--brand-muted);
+  font-size: 0.9375rem;
+}
+
+/* ==========================================================================
+   6. Work
+   ========================================================================== */
+.work {
+  padding-block: 7rem 6rem;
+}
+
+.work__title {
+  max-width: 14ch;
+  margin-bottom: 3.5rem;
+}
+
+.work__layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem 3.5rem;
+}
+
+.feature-card {
+  --card-padding: 1.75rem;
+  --card-radius: var(--radius-xl);
+  display: flex;
+  flex: 1.4 1 460px;
+  flex-wrap: wrap;
+  gap: 1.75rem;
+  min-width: 0;
+}
+
+.feature-card__media {
+  flex: 1 1 220px;
+  min-width: 0;
+  min-height: 300px;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  background: linear-gradient(160deg, #2a1a0a 0%, var(--color-crowd-back) 70%);
+}
+
+.feature-card__body {
+  --eyebrow-color: var(--color-teal);
+  --eyebrow-gap: 0;
+  display: flex;
+  flex: 1 1 260px;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.feature-card__title {
+  font-family: var(--font-display);
+  font-size: var(--text-feature);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.feature-card__summary {
+  color: var(--color-text-soft);
+  font-size: 1.0625rem;
+  line-height: 1.5;
+}
+
+.venue-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  padding-top: 0.875rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.9375rem;
+}
+
+.venue-list__row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+}
+
+.venue-list dt {
+  font-weight: 600;
+}
+
+.venue-list dd {
+  color: var(--color-text-muted);
+}
+
+.projects {
+  --eyebrow-gap: 1rem;
+  display: flex;
+  flex: 1 1 320px;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.projects__list {
+  border-bottom: 1px solid var(--line);
+}
+
+.project-link {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 1.75rem;
+  border-top: 1px solid var(--line);
+}
+
+.project-link__name {
+  font-family: var(--font-display);
+  font-size: var(--text-project);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.project-link__cta {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.projects__note {
+  margin-top: 1.25rem;
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   7. Reach
+   ========================================================================== */
+.reach {
+  border-block: 1px solid var(--line-faint);
+  background: var(--color-surface);
+}
+
+.reach__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3.5rem 5rem;
+  padding-block: 6.5rem;
+}
+
+.reach__column {
+  flex: 1 1 360px;
+  min-width: 0;
+}
+
+.reach__figure {
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+
+.reach__figure--number {
+  color: var(--color-accent);
+  font-size: var(--text-reach-number);
+  letter-spacing: -0.05em;
+  line-height: 0.85;
+}
+
+.reach__figure--words {
+  color: var(--color-teal);
+  font-size: var(--text-reach-words);
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+}
+
+.reach__text {
+  max-width: 26.25rem;
+  margin-top: 1.25rem;
+  color: var(--color-text-soft);
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   8. People (founder, mission, vision)
+   ========================================================================== */
+.people {
+  padding-block: 7rem 6rem;
+}
+
+.people__layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem 4.5rem;
+}
+
+.people__portrait {
+  flex: 1 1 320px;
+  max-width: 27.5rem;
+  min-height: 460px;
+  padding: 1.25rem;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(180deg, #141821, #0b0d12);
+  display: grid;
+  place-items: center;
+}
+
+.people__body {
+  --eyebrow-gap: 0;
+  display: flex;
+  flex: 1 1 440px;
+  flex-direction: column;
+  gap: 1.75rem;
+  min-width: 0;
+}
+
+.people__title {
+  font-family: var(--font-display);
+  font-size: var(--text-people);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.people__bio {
+  color: var(--color-text-soft);
+  font-size: 1.1875rem;
+  line-height: 1.6;
+}
+
+.principles {
+  --eyebrow-gap: 0.625rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.principle {
+  flex: 1 1 240px;
+  min-width: 0;
+}
+
+.principle__text {
+  color: var(--color-text-soft);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+/* ==========================================================================
+   9. Clients
+   ========================================================================== */
+.clients {
+  --eyebrow-gap: 1.75rem;
+  border-top: 1px solid var(--line-faint);
+}
+
+.clients__inner {
+  padding-block: 4.5rem 6rem;
+}
+
+.client-logos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.client-logos__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5.25rem;
+  border: 1px dashed var(--line-input);
+  border-radius: var(--radius-md);
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   10. Contact and footer
+   ========================================================================== */
+.contact {
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--line-faint);
+  background: var(--color-surface);
+}
+
+.contact__glow {
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  width: 900px;
+  height: 420px;
+  margin-left: -450px;
+  opacity: 0.16;
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    var(--color-accent),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.contact__inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3.5rem 5rem;
+  padding-block: 7rem;
+}
+
+.contact__info {
+  --eyebrow-color: var(--color-teal);
+  --eyebrow-gap: 0;
+  display: flex;
+  flex: 1 1 380px;
+  flex-direction: column;
+  gap: 1.75rem;
+  min-width: 0;
+}
+
+.contact__title {
+  font-family: var(--font-display);
+  font-size: var(--text-contact);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+}
+
+.contact__facts {
+  --eyebrow-color: var(--color-text-muted);
+  --eyebrow-gap: 0.375rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  color: var(--color-text-soft);
+  line-height: 1.55;
+}
+
+.inquiry-form {
+  --card-padding: 2rem;
+  --card-radius: var(--radius-xl);
+  display: flex;
+  flex: 1 1 440px;
+  flex-direction: column;
+  gap: 1.125rem;
+  min-width: 0;
+}
+
+.inquiry-form__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.125rem;
+}
+
+.inquiry-form__row > .field {
+  flex: 1 1 180px;
+  min-width: 0;
+}
+
+.site-footer {
+  border-top: 1px solid var(--line-faint);
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  padding-block: 2.25rem;
+}
+
+.site-footer__social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+}
