@@ -18,8 +18,7 @@
 
 /**
  * Navigation menu.
- * Below 768px the links collapse into a dropdown opened by the hamburger.
- * On wider screens the links sit inline and the button is hidden by CSS.
+ * The links live in a dropdown opened by the hamburger on every screen size.
  */
 (function () {
   "use strict";
@@ -33,8 +32,6 @@
   // CSS only collapses the menu once this class is present, so the links
   // stay reachable if this script fails to load.
   document.documentElement.classList.add("js");
-
-  const desktopQuery = window.matchMedia("(min-width: 48rem)");
 
   function setOpen(isOpen) {
     menu.classList.toggle("is-open", isOpen);
@@ -64,10 +61,5 @@
       setOpen(false);
       toggle.focus();
     }
-  });
-
-  // Reset when the window grows to the inline layout
-  desktopQuery.addEventListener("change", (event) => {
-    if (event.matches) setOpen(false);
   });
 })();
