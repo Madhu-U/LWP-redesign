@@ -168,10 +168,25 @@
        HERO
        ===================================================================== -->
     <header class="hero" id="top">
+      <div class="hero__media" aria-hidden="true">
+        <video
+          class="hero__video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+          poster="./src/assets/images/hero-poster.jpg"
+        >
+          <source src="./src/assets/videos/hero-video.mp4" type="video/mp4" />
+        </video>
+        <div class="hero__overlay"></div>
+      </div>
+
       <div class="hero__content container">
-        <p class="eyebrow eyebrow--teal">
+        <!-- <p class="eyebrow eyebrow--teal">
           Event management, staging, film. Bengaluru and across India.
-        </p>
+        </p> -->
         <h1 class="hero__title">Built for the night everyone remembers.</h1>
         <p class="hero__lede">
           Laughing Water Productions designs, stages and films live experiences,

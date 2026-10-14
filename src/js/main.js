@@ -68,3 +68,18 @@
     }
   });
 })();
+
+/**
+ * Hero background video autoplay safeguard.
+ */
+(function () {
+  const heroVideo = document.querySelector(".hero__video");
+  if (!heroVideo) return;
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    heroVideo.pause();
+  } else {
+    heroVideo.play().catch(() => {});
+  }
+})();
+
