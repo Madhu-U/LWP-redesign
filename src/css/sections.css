@@ -19,6 +19,8 @@
   flex-direction: column;
   min-height: 51.25rem;
   overflow: hidden;
+  /* Push content below the fixed navbar (navbar ~5rem + 1.25rem top offset) */
+  padding-top: 6rem;
   background: radial-gradient(
     120% 80% at 50% 0%,
     var(--color-hero-glow) 0%,
@@ -155,86 +157,264 @@
       7px 100% / 22px 46px repeat-x;
 }
 
+/* ==========================================================================
+   Site Navigation — isolated floating elements, glassmorphic
+   ========================================================================== */
+
+/* Outer nav: full-width fixed strip, constrained to container width */
 .site-nav {
-  position: relative;
-  z-index: 10; /* above .hero__content (z-index 2) so the menu stays clickable */
+  position: fixed;
+  top: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: var(--container);
+  z-index: 200;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem 1.25rem;
-  padding-block: 1.5rem;
+  align-items: flex-start;
+  justify-content: flex-end; /* menu-wrap anchors to the right */
+  padding-inline: var(--gutter);
+  pointer-events: none; /* children re-enable individually */
 }
 
+/* -----------------------------------------------------------------------
+   Logo — centered glass pill, taken out of flex flow
+   ----------------------------------------------------------------------- */
 .site-nav__logo {
-  display: block;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
   flex: none;
-  width: clamp(9rem, 48vw, 15rem);
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-pill);
+  background: rgba(14, 17, 23, 0.55);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgba(237, 234, 227, 0.1);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(237, 234, 227, 0.06);
+  pointer-events: auto;
+  transition: background 0.2s;
+}
+
+.site-nav__logo:hover {
+  background: rgba(14, 17, 23, 0.72);
 }
 
 .site-nav__logo-img {
-  width: 100%;
+  display: block;
+  width: clamp(8.4rem, 26.4vw, 12rem);
   height: auto;
 }
 
-/* Links. Without JavaScript they always show as a wrapping row. */
-.site-nav__menu {
+/* -----------------------------------------------------------------------
+   Right side: hamburger + integrated dropdown
+   The wrap is the positioning context for the dropdown.
+   ----------------------------------------------------------------------- */
+.site-nav__menu-wrap {
+  position: relative;
   display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  pointer-events: auto;
+}
+
+/* -----------------------------------------------------------------------
+   Hamburger button — glass circle
+   ----------------------------------------------------------------------- */
+.site-nav__bars {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 5px;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0.7rem;
+  border: 1px solid rgba(237, 234, 227, 0.18);
+  border-radius: 50%;
+  background: rgba(14, 17, 23, 0.55);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(237, 234, 227, 0.06);
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  flex-shrink: 0;
+  /* Hide when menu is open — the close btn takes its visual place */
+  position: relative;
+  z-index: 1;
+}
+
+.site-nav__bars:hover {
+  background: rgba(14, 17, 23, 0.75);
+  border-color: rgba(237, 234, 227, 0.35);
+}
+
+/* Fade out button when menu is open */
+.site-nav__bars[aria-expanded="true"] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.site-nav__bars-line {
+  display: block;
+  height: 1.5px;
+  width: 100%;
+  border-radius: 999px;
+  background: var(--color-text);
+}
+
+.site-nav__bars-line--short {
+  width: 60%;
+}
+
+/* -----------------------------------------------------------------------
+   Dropdown panel — anchored to the top-right of .site-nav__menu-wrap
+   Shares the same glass surface as the hamburger, so they feel unified.
+   ----------------------------------------------------------------------- */
+.site-nav__menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  display: none; /* JS adds .is-open */
+  flex-direction: column;
+  width: min(22rem, calc(100vw - 2 * var(--gutter)));
+  padding: 0.875rem 1.25rem 1.25rem;
+  border-radius: 1.375rem;
+  background: rgba(10, 12, 18, 0.82);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid rgba(237, 234, 227, 0.1);
+  box-shadow:
+    0 8px 40px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(237, 234, 227, 0.07);
+}
+
+.site-nav__menu.is-open {
+  display: flex;
+  animation: menu-enter 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes menu-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-0.4rem);
+    transform-origin: top right;
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    transform-origin: top right;
+  }
+}
+
+/* ✕ close button — sits exactly where the hamburger was (top-right of panel) */
+.site-nav__close {
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-bottom: 0.75rem;
+  border: 1px solid rgba(237, 234, 227, 0.18);
+  border-radius: 50%;
+  background: rgba(237, 234, 227, 0.07);
+  color: var(--color-text);
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  flex-shrink: 0;
+}
+
+.site-nav__close:hover {
+  background: rgba(237, 234, 227, 0.14);
+  border-color: rgba(237, 234, 227, 0.35);
+}
+
+/* Nav link list */
+.site-nav__links {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.site-nav__item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-block: 0.875rem;
+  border-bottom: 1px solid rgba(237, 234, 227, 0.1);
+}
+
+.site-nav__item:last-child {
+  border-bottom: none;
+}
+
+.site-nav__num {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--color-accent);
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+  width: 1.75rem;
+}
+
+.site-nav__link {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  transition: color 0.15s ease;
+}
+
+.site-nav__link:hover {
+  color: var(--color-accent);
+}
+
+/* CTA button */
+.site-nav__cta {
+  margin-bottom: 1rem;
+  border-radius: var(--radius-pill);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Social icon row */
+.site-nav__socials {
+  display: flex;
+  gap: 0.625rem;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-end;
-  gap: 0.5rem 1.75rem;
-  font-size: 0.9375rem;
-  font-weight: 500;
 }
 
-/* The hamburger only exists when JavaScript can drive it (on every screen size). */
-.site-nav__bars {
-  display: none;
-  margin: 0;
-  padding: 0.5rem;
-  border: 0;
-  background: none;
-  cursor: pointer;
+.site-nav__social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.18s ease, opacity 0.18s ease;
 }
 
-.site-nav__bars-icon {
+.site-nav__social-link svg {
   width: 2rem;
-}
-
-/* With JavaScript the links live in a dropdown panel at every screen size */
-.js .site-nav__bars {
+  height: 2rem;
   display: block;
-  margin-right: -0.5rem; /* optical alignment with the page gutter */
 }
 
-.js .site-nav__menu {
-  position: absolute;
-  top: calc(100% - 0.5rem);
-  right: var(--gutter);
-  z-index: 100;
-  flex-direction: column;
-  align-items: stretch;
-  width: min(16rem, calc(100% - 2 * var(--gutter)));
-  padding: 1.25rem;
-  border: 3px solid var(--color-accent);
-  border-radius: var(--radius-md);
-  background: var(--color-card);
-  gap: 0.25rem;
-  text-align: center;
-}
-
-.js .site-nav__menu:not(.is-open) {
-  display: none;
-}
-
-.js .site-nav__menu a:not(.btn) {
-  display: block;
-  padding-block: 0.75rem; /* 44px+ tap target */
-}
-
-.js .site-nav__menu .btn {
-  margin-top: 0.5rem;
+.site-nav__social-link:hover {
+  transform: scale(1.1);
+  opacity: 0.88;
 }
 
 .hero__content {

@@ -18,41 +18,46 @@
 
 /**
  * Navigation menu.
- * The links live in a dropdown opened by the hamburger on every screen size.
+ * The links live in a glassmorphic dropdown opened by the hamburger.
  */
 (function () {
   "use strict";
 
   const toggle = document.querySelector(".site-nav__bars");
   const menu = document.querySelector("#nav-menu");
-  const barsIcon = document.querySelector("#bars-icon");
-  const crossIcon = document.querySelector("#cross-icon");
+  const closeBtn = document.querySelector(".site-nav__close");
   if (!toggle || !menu) return;
-
-  // CSS only collapses the menu once this class is present, so the links
-  // stay reachable if this script fails to load.
-  document.documentElement.classList.add("js");
 
   function setOpen(isOpen) {
     menu.classList.toggle("is-open", isOpen);
-    barsIcon.hidden = isOpen;
-    crossIcon.hidden = !isOpen;
     toggle.setAttribute("aria-expanded", String(isOpen));
     toggle.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
+    // Trap focus inside the panel when open
+    if (isOpen && closeBtn) closeBtn.focus();
   }
 
   toggle.addEventListener("click", () => {
     setOpen(!menu.classList.contains("is-open"));
   });
 
+  // Close via the ✕ button inside the panel
+  if (closeBtn) {
+    closeBtn.addEventListener("click", () => {
+      setOpen(false);
+      toggle.focus();
+    });
+  }
+
   // Close after choosing a link
   menu.addEventListener("click", (event) => {
     if (event.target.closest("a")) setOpen(false);
   });
 
-  // Close when clicking elsewhere
+  // Close when clicking outside the menu-wrap or logo
   document.addEventListener("click", (event) => {
-    if (!event.target.closest(".site-nav")) setOpen(false);
+    if (!event.target.closest(".site-nav__menu-wrap") && !event.target.closest(".site-nav__logo")) {
+      setOpen(false);
+    }
   });
 
   // Close with Escape and return focus to the button
