@@ -384,37 +384,9 @@
 
 /* CTA button */
 .site-nav__cta {
-  margin-bottom: 1rem;
   border-radius: var(--radius-pill);
   font-size: 1rem;
   font-weight: 600;
-}
-
-/* Social icon row */
-.site-nav__socials {
-  display: flex;
-  gap: 0.625rem;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-.site-nav__social-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  transition: transform 0.18s ease, opacity 0.18s ease;
-}
-
-.site-nav__social-link svg {
-  width: 2rem;
-  height: 2rem;
-  display: block;
-}
-
-.site-nav__social-link:hover {
-  transform: scale(1.1);
-  opacity: 0.88;
 }
 
 .hero__content {
