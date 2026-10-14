@@ -103,62 +103,64 @@
        PRIMARY NAVIGATION (fixed, floating, glassmorphic)
        ===================================================================== -->
     <nav class="site-nav" aria-label="Primary">
-      <!-- Isolated logo pill — floats on the left -->
-      <a class="site-nav__logo" href="#top">
-        <img
-          src="./src/assets/LWP-Logo.webp"
-          alt="Laughing Water Productions, home"
-          class="site-nav__logo-img"
-        />
-      </a>
+      <div class="site-nav__bar">
+        <!-- Logo on the left -->
+        <a class="site-nav__logo" href="#top">
+          <img
+            src="./src/assets/LWP-Logo.webp"
+            alt="Laughing Water Productions, home"
+            class="site-nav__logo-img"
+          />
+        </a>
 
-      <!-- Right side: hamburger + integrated dropdown (shares the same glass surface) -->
-      <div class="site-nav__menu-wrap">
-        <button
-          class="site-nav__bars"
-          type="button"
-          aria-label="Open navigation"
-          aria-expanded="false"
-          aria-controls="nav-menu"
-        >
-          <!-- Hamburger lines (CSS-drawn, no asset needed) -->
-          <span class="site-nav__bars-line" aria-hidden="true"></span>
-          <span class="site-nav__bars-line" aria-hidden="true"></span>
-          <span class="site-nav__bars-line site-nav__bars-line--short" aria-hidden="true"></span>
-        </button>
-
-        <!-- Dropdown panel — anchored to the wrap, shares its glass look -->
-        <div id="nav-menu" class="site-nav__menu" role="dialog" aria-label="Site navigation">
-          <!-- Close button (×) aligned to where the hamburger sits -->
+        <!-- Right side: hamburger + integrated dropdown -->
+        <div class="site-nav__menu-wrap">
           <button
-            class="site-nav__close"
+            class="site-nav__bars"
             type="button"
-            aria-label="Close navigation"
+            aria-label="Open navigation"
+            aria-expanded="false"
+            aria-controls="nav-menu"
           >
-            &times;
+            <!-- Hamburger lines (CSS-drawn, no asset needed) -->
+            <span class="site-nav__bars-line" aria-hidden="true"></span>
+            <span class="site-nav__bars-line" aria-hidden="true"></span>
+            <span class="site-nav__bars-line site-nav__bars-line--short" aria-hidden="true"></span>
           </button>
 
-          <ul class="site-nav__links" role="list">
-            <li class="site-nav__item">
-              <span class="site-nav__num" aria-hidden="true">01</span>
-              <a class="site-nav__link" href="#brands">Brands</a>
-            </li>
-            <li class="site-nav__item">
-              <span class="site-nav__num" aria-hidden="true">02</span>
-              <a class="site-nav__link" href="#work">Work</a>
-            </li>
-            <li class="site-nav__item">
-              <span class="site-nav__num" aria-hidden="true">03</span>
-              <a class="site-nav__link" href="#reach">Reach</a>
-            </li>
-            <li class="site-nav__item">
-              <span class="site-nav__num" aria-hidden="true">04</span>
-              <a class="site-nav__link" href="#people">People</a>
-            </li>
-          </ul>
+          <!-- Dropdown panel — anchored to the wrap, shares its glass look -->
+          <div id="nav-menu" class="site-nav__menu" role="dialog" aria-label="Site navigation">
+            <!-- Close button (×) aligned to where the hamburger sits -->
+            <button
+              class="site-nav__close"
+              type="button"
+              aria-label="Close navigation"
+            >
+              &times;
+            </button>
 
-          <a class="btn btn--primary btn--block site-nav__cta" href="#contact">Plan an event</a>
+            <ul class="site-nav__links" role="list">
+              <li class="site-nav__item">
+                <span class="site-nav__num" aria-hidden="true">01</span>
+                <a class="site-nav__link" href="#brands">Brands</a>
+              </li>
+              <li class="site-nav__item">
+                <span class="site-nav__num" aria-hidden="true">02</span>
+                <a class="site-nav__link" href="#work">Work</a>
+              </li>
+              <li class="site-nav__item">
+                <span class="site-nav__num" aria-hidden="true">03</span>
+                <a class="site-nav__link" href="#reach">Reach</a>
+              </li>
+              <li class="site-nav__item">
+                <span class="site-nav__num" aria-hidden="true">04</span>
+                <a class="site-nav__link" href="#people">People</a>
+              </li>
+            </ul>
 
+            <a class="btn btn--primary btn--block site-nav__cta" href="#contact">Plan an event</a>
+
+          </div>
         </div>
       </div>
     </nav>

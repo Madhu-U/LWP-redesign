@@ -83,3 +83,61 @@
   }
 })();
 
+/**
+ * Dynamic navbar: stretches the whole row at the top / when scrolling up,
+ * collapses to the logo pill (and hides the menu on the right) when scrolling down.
+ */
+(function () {
+  "use strict";
+
+  const nav = document.querySelector(".site-nav");
+  const menu = document.querySelector("#nav-menu");
+  if (!nav) return;
+
+  let lastScrollY = window.scrollY;
+  const SCROLL_THRESHOLD = 30;
+  const DELTA = 6;
+  let ticking = false;
+
+  function updateNav() {
+    const currentScrollY = Math.max(0, window.scrollY);
+
+    // If dropdown menu is open, keep navbar in full state
+    if (menu && menu.classList.contains("is-open")) {
+      nav.classList.remove("is-collapsed");
+      lastScrollY = currentScrollY;
+      ticking = false;
+      return;
+    }
+
+    if (currentScrollY <= SCROLL_THRESHOLD) {
+      // At the top of the page: full state
+      nav.classList.remove("is-collapsed");
+    } else if (currentScrollY > lastScrollY + DELTA) {
+      // Scrolling down: collapse to logo pill
+      nav.classList.add("is-collapsed");
+    } else if (currentScrollY < lastScrollY - DELTA) {
+      // Scrolling up: expand to full state immediately
+      nav.classList.remove("is-collapsed");
+    }
+
+    lastScrollY = currentScrollY;
+    ticking = false;
+  }
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateNav);
+        ticking = true;
+      }
+    },
+    { passive: true }
+  );
+
+  // Initialize on load
+  updateNav();
+})();
+
+

@@ -213,36 +213,69 @@
   z-index: 200;
   display: flex;
   align-items: flex-start;
-  justify-content: flex-end; /* menu-wrap anchors to the right */
+  justify-content: center; /* Keeps the navbar and logo pill centered */
   padding-inline: var(--gutter);
   pointer-events: none; /* children re-enable individually */
 }
 
 /* -----------------------------------------------------------------------
-   Logo — centered glass pill, taken out of flex flow
+   Unified glass bar
+   - Full state: stretches the whole row width with the logo in the center
+   - Collapsed state: animates symmetrically down to wrap the centered logo pill
    ----------------------------------------------------------------------- */
-.site-nav__logo {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+.site-nav__bar {
+  position: relative;
   display: flex;
   align-items: center;
-  flex: none;
-  padding: 0.6rem 1.2rem;
+  justify-content: center; /* Centers the logo in the bar */
+  width: 100%;
+  max-width: 100%;
+  padding: 0.5rem 1.2rem;
   border-radius: var(--radius-pill);
-  background: rgba(14, 17, 23, 0.55);
-  backdrop-filter: blur(18px) saturate(160%);
-  -webkit-backdrop-filter: blur(18px) saturate(160%);
-  border: 1px solid rgba(237, 234, 227, 0.1);
-  box-shadow:
-    0 4px 24px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(237, 234, 227, 0.06);
   pointer-events: auto;
-  transition: background 0.2s;
+  transition:
+    max-width 1s cubic-bezier(0.16, 1, 0.3, 1),
+    padding 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.site-nav__logo:hover {
+/* Glass background on ::before so nested elements (e.g. dropdown) don't hit Chromium's nested backdrop-filter bug */
+.site-nav__bar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(14, 17, 23, 0.62);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgba(237, 234, 227, 0.12);
+  box-shadow:
+    0 4px 28px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(237, 234, 227, 0.08);
+  pointer-events: none;
+  z-index: 0;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.site-nav__bar:hover::before {
   background: rgba(14, 17, 23, 0.72);
+  border-color: rgba(237, 234, 227, 0.2);
+}
+
+/* -----------------------------------------------------------------------
+   Logo — centered in the bar
+   ----------------------------------------------------------------------- */
+.site-nav__logo {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  pointer-events: auto;
+  line-height: 1;
 }
 
 .site-nav__logo-img {
@@ -253,14 +286,51 @@
 
 /* -----------------------------------------------------------------------
    Right side: hamburger + integrated dropdown
-   The wrap is the positioning context for the dropdown.
+   Pinned to the right edge and spans the navbar height
    ----------------------------------------------------------------------- */
 .site-nav__menu-wrap {
-  position: relative;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 0.6rem;
   pointer-events: auto;
+  transition:
+    opacity 0.28s ease,
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0.28s ease;
+}
+
+/* -----------------------------------------------------------------------
+   Collapsed State (when scrolling down):
+   The bar shrinks symmetrically to the centered logo pill,
+   and the menu on the right disappears.
+   ----------------------------------------------------------------------- */
+.site-nav.is-collapsed .site-nav__bar {
+  max-width: clamp(10.8rem, calc(26.4vw + 2.4rem), 14.4rem);
+  padding: 0.6rem 1.2rem;
+}
+
+.site-nav.is-collapsed .site-nav__menu-wrap {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(12px) scale(0.85);
+  transition:
+    opacity 0.2s ease,
+    transform 0.25s ease,
+    visibility 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-nav__bar,
+  .site-nav__menu-wrap {
+    transition: none;
+  }
 }
 
 /* -----------------------------------------------------------------------
@@ -315,8 +385,8 @@
 }
 
 /* -----------------------------------------------------------------------
-   Dropdown panel — anchored to the top-right of .site-nav__menu-wrap
-   Shares the same glass surface as the hamburger, so they feel unified.
+   Dropdown panel — aligned with the top and right edges of the navbar
+   Shares the exact same glassmorphic surface and blur recipe as the navbar.
    ----------------------------------------------------------------------- */
 .site-nav__menu {
   position: absolute;
@@ -326,15 +396,15 @@
   display: none; /* JS adds .is-open */
   flex-direction: column;
   width: min(22rem, calc(100vw - 2 * var(--gutter)));
-  padding: 0.875rem 1.25rem 1.25rem;
-  border-radius: 1.375rem;
-  background: rgba(10, 12, 18, 0.82);
-  backdrop-filter: blur(24px) saturate(150%);
-  -webkit-backdrop-filter: blur(24px) saturate(150%);
-  border: 1px solid rgba(237, 234, 227, 0.1);
+  padding: 0.5rem 0.6rem 1.25rem 1.25rem;
+  border-radius: 1.5rem;
+  background: rgba(14, 17, 23, 0.62);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgba(237, 234, 227, 0.12);
   box-shadow:
-    0 8px 40px rgba(0, 0, 0, 0.55),
-    inset 0 1px 0 rgba(237, 234, 227, 0.07);
+    0 16px 48px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(237, 234, 227, 0.08);
 }
 
 .site-nav__menu.is-open {
@@ -350,8 +420,7 @@
   }
   to {
     opacity: 1;
-    transform: scale(1) translateY(0);
-    transform-origin: top right;
+    transform: none;
   }
 }
 
